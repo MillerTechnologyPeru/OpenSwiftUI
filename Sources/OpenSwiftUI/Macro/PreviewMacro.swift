@@ -2,7 +2,7 @@
 //  PreviewMacro.swift
 //  OpenSwiftUI
 
-#if canImport(DeveloperToolsSupport)
+#if canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 public import DeveloperToolsSupport
 import OpenSwiftUICore
 

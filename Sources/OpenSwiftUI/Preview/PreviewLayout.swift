@@ -5,7 +5,7 @@
 //  Audited for 6.5.4
 //  Status: Complete
 
-#if !canImport(DeveloperToolsSupport)
+#if !canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 public import Foundation
 
 /// A size constraint for a preview.

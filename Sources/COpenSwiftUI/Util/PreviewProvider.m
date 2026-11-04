@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if defined(__arm64__) || defined(__x86_64__)
+#if (defined(__arm64__) || defined(__x86_64__)) && !defined(OPENSWIFTUI_AS_SWIFTUI)
 #include <os/lock.h>
 
 // Xcode asks the Swift runtime whether the original provider type conforms to

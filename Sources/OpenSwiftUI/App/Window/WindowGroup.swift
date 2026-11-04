@@ -249,6 +249,17 @@ public struct WindowGroup<Content>: Scene where Content: View {
         self.content = .eager(content())
     }
 
+    @usableFromInline
+    nonisolated init(
+        id: String? = nil,
+        title: Text? = nil,
+        @ViewBuilder lazyContent: @escaping () -> Content
+    ) {
+        self.title = title
+        self.content = .lazy(lazyContent)
+        self.id = id
+    }
+
     public var body: some Scene {
         WindowSceneList(
             configuration: WindowSceneConfiguration(

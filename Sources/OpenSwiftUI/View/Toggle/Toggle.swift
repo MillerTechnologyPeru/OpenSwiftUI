@@ -497,7 +497,7 @@ extension Toggle where Label == OpenSwiftUI.Label<Text, Image> {
     }
 }
 
-#if canImport(DeveloperToolsSupport)
+#if canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 // MARK: - Toggle + ImageResource
 
 @available(OpenSwiftUI_v5_0, *)

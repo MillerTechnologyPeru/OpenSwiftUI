@@ -9,7 +9,7 @@
 import COpenSwiftUI
 public import OpenSwiftUICore
 
-#if canImport(DeveloperToolsSupport)
+#if canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 public import DeveloperToolsSupport
 #endif
 

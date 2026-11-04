@@ -2,7 +2,7 @@
 //  LegacyPreviewProvider.swift
 //  OpenSwiftUI
 
-#if canImport(Darwin)
+#if canImport(Darwin) && !OPENSWIFTUI_AS_SWIFTUI
 import OpenSwiftUICore
 import SwiftUI
 

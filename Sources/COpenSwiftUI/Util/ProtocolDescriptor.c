@@ -7,25 +7,32 @@
 
 #include "ProtocolDescriptor.h"
 
-OPENSWIFTUI_EXPORT
-const void *$s11OpenSwiftUI5SceneMp;
+// Swift symbols of the module's ABI name: SwiftUI when built to stand in for it.
+#ifdef OPENSWIFTUI_AS_SWIFTUI
+#define OPENSWIFTUI_MANGLED(name) $s7SwiftUI##name
+#else
+#define OPENSWIFTUI_MANGLED(name) $s11OpenSwiftUI##name
+#endif
 
 OPENSWIFTUI_EXPORT
-const void *$s11OpenSwiftUI8CommandsMp;
+const void *OPENSWIFTUI_MANGLED(5SceneMp);
 
 OPENSWIFTUI_EXPORT
-const void *$s11OpenSwiftUI15PreviewProviderMp;
+const void *OPENSWIFTUI_MANGLED(8CommandsMp);
+
+OPENSWIFTUI_EXPORT
+const void *OPENSWIFTUI_MANGLED(15PreviewProviderMp);
 
 const void *_sceneProtocolDescriptor(void) {
-    return &$s11OpenSwiftUI5SceneMp;
+    return &OPENSWIFTUI_MANGLED(5SceneMp);
 }
 
 const void *_commandsProtocolDescriptor(void) {
-    return &$s11OpenSwiftUI8CommandsMp;
+    return &OPENSWIFTUI_MANGLED(8CommandsMp);
 }
 
 const void *_previewProviderProtocolDescriptor(void) {
-    return &$s11OpenSwiftUI15PreviewProviderMp;
+    return &OPENSWIFTUI_MANGLED(15PreviewProviderMp);
 }
 
 #if OPENSWIFTUI_OPENCOMBINE

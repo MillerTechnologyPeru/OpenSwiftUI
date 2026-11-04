@@ -20,7 +20,7 @@ package typealias UniqueID = OpenSwiftUICore.UniqueID
 @_exported import CoreTransferable
 #endif
 
-#if canImport(DeveloperToolsSupport)
+#if canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 @_exported import DeveloperToolsSupport
 #endif
 

@@ -9,7 +9,7 @@
 /// composite scene.
 @available(OpenSwiftUI_v2_0, *)
 @resultBuilder
-public enum SceneBuilder {
+public struct SceneBuilder {
 
     /// Builds an expression within the builder.
     @_alwaysEmitIntoClient

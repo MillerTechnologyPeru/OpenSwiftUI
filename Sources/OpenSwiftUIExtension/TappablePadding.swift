@@ -75,7 +75,7 @@ extension View {
     }
 }
 
-#if canImport(DeveloperToolsSupport)
+#if canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 @available(iOS 15, macOS 12, *)
 #Preview {
     HStack(spacing: 20) {

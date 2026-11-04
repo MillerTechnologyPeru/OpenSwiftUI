@@ -143,6 +143,10 @@ let libraryEvolutionCondition = envBoolValue("LIBRARY_EVOLUTION", default: build
 let compatibilityTestCondition = envBoolValue("COMPATIBILITY_TEST")
 
 let useLocalDeps = envBoolValue("USE_LOCAL_DEPS", default: false)
+// Builds OpenSwiftUI to stand in for Apple's SwiftUI: both modules mangle their
+// symbols under the ABI name SwiftUI, as Apple's SwiftUI and SwiftUICore do.
+let asSwiftUICondition = envBoolValue("AS_SWIFTUI", default: false)
+let abiName = asSwiftUICondition ? "SwiftUI" : "OpenSwiftUI"
 let versionedDocCPlugin = envBoolValue("VERSIONED_DOCC_PLUGIN", default: false)
 
 // For OpenAttributeGraphShims
@@ -236,6 +240,10 @@ if releaseVersion >= 2021 {
     for year in 2021 ... releaseVersion {
         sharedSwiftSettings.append(.define("OPENSWIFTUI_SUPPORT_\(year)_API"))
     }
+}
+if asSwiftUICondition {
+    sharedCSettings.append(.define("OPENSWIFTUI_AS_SWIFTUI"))
+    sharedSwiftSettings.append(.define("OPENSWIFTUI_AS_SWIFTUI"))
 }
 if libraryEvolutionCondition {
     // NOTE: -enable-library-evolution will cause module verify failure for `swift build`.
@@ -659,7 +667,7 @@ let openSwiftUICoreTarget = Target.target(
     cSettings: sharedCSettings,
     cxxSettings: sharedCxxSettings,
     swiftSettings: sharedSwiftSettings + [
-        .unsafeFlags(["-module-abi-name", "OpenSwiftUI"]),
+        .unsafeFlags(["-module-abi-name", abiName]),
         .unsafeFlags(["-import-underlying-module"], .when(platforms: .darwinPlatforms)),
     ],
     linkerSettings: computeCondition ? [
@@ -715,6 +723,7 @@ let openSwiftUITarget = Target.target(
     cSettings: sharedCSettings,
     cxxSettings: sharedCxxSettings,
     swiftSettings: sharedSwiftSettings + [
+        .unsafeFlags(["-module-abi-name", abiName]),
         .unsafeFlags(["-import-underlying-module"], .when(platforms: .darwinPlatforms)),
     ],
     linkerSettings: [

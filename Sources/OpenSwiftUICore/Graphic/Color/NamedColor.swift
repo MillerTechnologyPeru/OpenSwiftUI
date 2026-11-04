@@ -266,7 +266,7 @@ extension SystemColorType {
 
 #endif
 
-#if canImport(DeveloperToolsSupport)
+#if canImport(DeveloperToolsSupport) && !OPENSWIFTUI_AS_SWIFTUI
 
 public import DeveloperToolsSupport
 

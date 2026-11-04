@@ -23,6 +23,13 @@ static bool my_kdebug_is_enabled(uint32_t debugid) {
 #include <os/log.h>
 #include <CoreFoundation/CoreFoundation.h>
 
+// Swift symbols of the module's ABI name: SwiftUI when built to stand in for it.
+#ifdef OPENSWIFTUI_AS_SWIFTUI
+#define OPENSWIFTUI_MANGLED(name) $s7SwiftUI##name
+#else
+#define OPENSWIFTUI_MANGLED(name) $s11OpenSwiftUI##name
+#endif
+
 // OpenSwiftUI_SPI is linked as a static framework by generated projects. Keep
 // an explicit reference to this translation unit so the linker extracts the
 // interpose registrations from the archive.
@@ -105,35 +112,35 @@ static inline CFStringRef _interpose_protocol_description(const void *protocol) 
 // MARK: - Color.Resolved Nominal Type Descriptor
 
 extern const void $s7SwiftUI5ColorV8ResolvedVN;
-extern const void *$s11OpenSwiftUI5ColorV8ResolvedVN;
+extern const void *OPENSWIFTUI_MANGLED(5ColorV8ResolvedVN);
 
 const void *_OpenSwiftUI_ColorResolvedNTD(void) {
-    return &$s11OpenSwiftUI5ColorV8ResolvedVN;
+    return &OPENSWIFTUI_MANGLED(5ColorV8ResolvedVN);
 }
 
 // MARK: - Resolved Paint Metadata
 
 extern const void $s7SwiftUI14LinearGradientV6_PaintVN;
-extern const void $s11OpenSwiftUI14LinearGradientV6_PaintVN;
+extern const void OPENSWIFTUI_MANGLED(14LinearGradientV6_PaintVN);
 extern const void $s7SwiftUI14RadialGradientV6_PaintVN;
-extern const void $s11OpenSwiftUI14RadialGradientV6_PaintVN;
+extern const void OPENSWIFTUI_MANGLED(14RadialGradientV6_PaintVN);
 extern const void $s7SwiftUI18EllipticalGradientV6_PaintVN;
-extern const void $s11OpenSwiftUI18EllipticalGradientV6_PaintVN;
+extern const void OPENSWIFTUI_MANGLED(18EllipticalGradientV6_PaintVN);
 extern const void $s7SwiftUI15AngularGradientV6_PaintVN;
-extern const void $s11OpenSwiftUI15AngularGradientV6_PaintVN;
+extern const void OPENSWIFTUI_MANGLED(15AngularGradientV6_PaintVN);
 
 static const void *_interpose_resolved_paint_type(const void *targetType) {
     // These payloads, including gradient stops, must match the system layout.
     if (targetType == &$s7SwiftUI5ColorV8ResolvedVN) {
         return _OpenSwiftUI_ColorResolvedNTD();
     } else if (targetType == &$s7SwiftUI14LinearGradientV6_PaintVN) {
-        return &$s11OpenSwiftUI14LinearGradientV6_PaintVN;
+        return &OPENSWIFTUI_MANGLED(14LinearGradientV6_PaintVN);
     } else if (targetType == &$s7SwiftUI14RadialGradientV6_PaintVN) {
-        return &$s11OpenSwiftUI14RadialGradientV6_PaintVN;
+        return &OPENSWIFTUI_MANGLED(14RadialGradientV6_PaintVN);
     } else if (targetType == &$s7SwiftUI18EllipticalGradientV6_PaintVN) {
-        return &$s11OpenSwiftUI18EllipticalGradientV6_PaintVN;
+        return &OPENSWIFTUI_MANGLED(18EllipticalGradientV6_PaintVN);
     } else if (targetType == &$s7SwiftUI15AngularGradientV6_PaintVN) {
-        return &$s11OpenSwiftUI15AngularGradientV6_PaintVN;
+        return &OPENSWIFTUI_MANGLED(15AngularGradientV6_PaintVN);
     }
     return NULL;
 }
@@ -184,10 +191,10 @@ static bool my_swift_dynamicCast(void *dest, void *src, const void *srcType, con
 // MARK: - PlatformDrawable Protocol Descriptor
 
 extern const void $s7SwiftUI16PlatformDrawableMp;
-extern const void $s11OpenSwiftUI16PlatformDrawableMp;
+extern const void OPENSWIFTUI_MANGLED(16PlatformDrawableMp);
 
 const void *_OpenSwiftUI_PlatformDrawablePD(void) {
-    return &$s11OpenSwiftUI16PlatformDrawableMp;
+    return &OPENSWIFTUI_MANGLED(16PlatformDrawableMp);
 }
 
 // MARK: - swift_conformsToProtocol2
